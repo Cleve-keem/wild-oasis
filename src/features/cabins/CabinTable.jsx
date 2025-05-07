@@ -29,12 +29,8 @@ const TableHeader = styled.header`
 `;
 
 export default function CabinTable() {
-  const {
-    isLoading,
-    data: cabin,
-    error,
-  } = useQuery({
-    queryKey: ["cabin"],
+  const { isLoading, data: cabin } = useQuery({
+    queryKey: ["cabins"],
     queryFn: getCabins,
   });
 
@@ -50,7 +46,7 @@ export default function CabinTable() {
         <div></div>
       </TableHeader>
       {cabin.map((cabin) => (
-        <CabinRow cabin={cabin} key={cabin.key} />
+        <CabinRow cabin={cabin} key={cabin.id} />
       ))}
     </Table>
   );
