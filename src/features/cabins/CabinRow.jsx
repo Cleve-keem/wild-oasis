@@ -59,7 +59,7 @@ export default function CabinRow({ cabin }) {
     mutationFn: deleteCabin,
     onSuccess: () => { 
       toast.success("Cabin successfully deleted");
-      
+
       queryClient.invalidateQueries({
         queryKey: ["cabins"],
       });
@@ -69,7 +69,7 @@ export default function CabinRow({ cabin }) {
 
   return (
     <TableRow>
-      <Img scr={image} />
+      <Img src={image} />
       <Cabin>{name}</Cabin>
       <div>Fit up to {maxCapacity} guest</div>
       <Price>{formatCurrency(regularPrice)}</Price>
