@@ -47,13 +47,15 @@ const Error = styled.span`
 `;
 
 function CreateCabinForm() {
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   const queryClient = useQueryClient();
 
-  const {
-    isLoading: isCreating,
-    mutate,
-  } = useMutation({
+  const { isLoading: isCreating, mutate } = useMutation({
     mutationFn: createCabin,
     onSuccess: () => {
       toast.success("New cabin created successfully!");
@@ -73,17 +75,32 @@ function CreateCabinForm() {
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow>
         <Label htmlFor="name">Cabin name</Label>
-        <Input type="text" id="name" {...register("name")} />
+        <Input
+          type="text"
+          id="name"
+          {...register("name", { required: "This field is required" })}
+        />
+        {errors.name && <p>{errors.name.message}</p>}
       </FormRow>
 
       <FormRow>
         <Label htmlFor="maxCapacity">Maximum capacity</Label>
-        <Input type="number" id="maxCapacity" {...register("maxCapacity")} />
+        <Input
+          type="number"
+          id="maxCapacity"
+          {...register("maxCapacity", { required: "This field is required" })}
+        />
+        {errors.maxCapacity && <p>{errors.maxCapacity.message}</p>}
       </FormRow>
 
       <FormRow>
         <Label htmlFor="regularPrice">Regular price</Label>
-        <Input type="number" id="regularPrice" {...register("regularPrice")} />
+        <Input
+          type="number"
+          id="regularPrice"
+          {...register("regularPrice", { required: "This field is required" })}
+        />
+        {errors.regularPrice && <p>{errors.regularPrice.message}</p>}
       </FormRow>
 
       <FormRow>
@@ -92,18 +109,29 @@ function CreateCabinForm() {
           type="number"
           id="discount"
           defaultValue={0}
-          {...register("discount")}
+          {...register("discount", { required: "This field is required" })}
         />
+        {errors.discount && <p>{errors.discount.message}</p>}
       </FormRow>
 
       <FormRow>
         <Label htmlFor="description">Description for website</Label>
-        <Textarea type="number" id="description" {...register("description")} />
+        <Textarea
+          id="description"
+          {...register("description", { required: "This field is required" })}
+        />
+        {errors.description && <p>{errors.description.message}</p>}
       </FormRow>
 
       <FormRow>
         <Label htmlFor="image">Cabin photo</Label>
-        <FileInput id="image" accept="image/*" {...register("image")} />
+        <FileInput
+          id="image"
+          accept="image/*"
+          type="file"
+          {...register("image", { required: "This field is required" })}
+        />
+        {errors.image && <p>{errors.image.message}</p>}
       </FormRow>
 
       <FormRow>
