@@ -68,6 +68,7 @@ function CreateCabinForm() {
   });
 
   function onSubmit(data) {
+    // console.log(data.image[0].name);
     mutate(data);
   }
 
@@ -80,7 +81,7 @@ function CreateCabinForm() {
           id="name"
           {...register("name", { required: "This field is required" })}
         />
-        {errors.name && <p>{errors.name.message}</p>}
+        {errors.name && <Error>{errors.name.message}</Error>}
       </FormRow>
 
       <FormRow>
@@ -90,7 +91,7 @@ function CreateCabinForm() {
           id="maxCapacity"
           {...register("maxCapacity", { required: "This field is required" })}
         />
-        {errors.maxCapacity && <p>{errors.maxCapacity.message}</p>}
+        {errors.maxCapacity && <Error>{errors.maxCapacity.message}</Error>}
       </FormRow>
 
       <FormRow>
@@ -100,7 +101,7 @@ function CreateCabinForm() {
           id="regularPrice"
           {...register("regularPrice", { required: "This field is required" })}
         />
-        {errors.regularPrice && <p>{errors.regularPrice.message}</p>}
+        {errors.regularPrice && <Error>{errors.regularPrice.message}</Error>}
       </FormRow>
 
       <FormRow>
@@ -111,7 +112,7 @@ function CreateCabinForm() {
           defaultValue={0}
           {...register("discount", { required: "This field is required" })}
         />
-        {errors.discount && <p>{errors.discount.message}</p>}
+        {errors.discount && <Error>{errors.discount.message}</Error>}
       </FormRow>
 
       <FormRow>
@@ -120,7 +121,7 @@ function CreateCabinForm() {
           id="description"
           {...register("description", { required: "This field is required" })}
         />
-        {errors.description && <p>{errors.description.message}</p>}
+        {errors.description && <Error>{errors.description.message}</Error>}
       </FormRow>
 
       <FormRow>
@@ -131,7 +132,7 @@ function CreateCabinForm() {
           type="file"
           {...register("image", { required: "This field is required" })}
         />
-        {errors.image && <p>{errors.image.message}</p>}
+        {errors.image && <Error>{errors.image.message}</Error>}
       </FormRow>
 
       <FormRow>
